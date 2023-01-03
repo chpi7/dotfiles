@@ -1,5 +1,9 @@
 #!/bin/zsh
 
-ln -s /home/user/git/dotfiles/.zshrc ~/
-ln -s /home/user/git/dotfiles/.tmux.conf ~/
-ln -s /home/user/git/dotfiles/.vimrc ~/
+function linkfile {
+        ln -sf `pwd`/$1 ~/
+}
+
+linkfile .zshrc
+linkfile .tmux.conf
+linkfile .vimrc
