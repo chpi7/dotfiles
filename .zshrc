@@ -9,5 +9,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+omz theme set half-life
 # λ
 PROMPT='➜  %{$fg[cyan]%}%c$vcs_info_msg_0_ %{$reset_color%}'
