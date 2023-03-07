@@ -1,14 +1,11 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="half-life"
+ZSH_THEME="robbyrussell" # set by `omz`
 
 plugins=(
 	git
 	fzf
+	z
 )
 
 source $ZSH/oh-my-zsh.sh
-
-omz theme set half-life
-# λ
-PROMPT='➜  %{$fg[cyan]%}%c$vcs_info_msg_0_ %{$reset_color%}'
