@@ -15,8 +15,8 @@ return require('packer').startup(function(use)
 	}
 
 	-- Colors
-	-- use({ 'rose-pine/neovim', as = 'rose-pine', config = function() vim.cmd('colorscheme rose-pine') end })
-	use({ 'folke/tokyonight.nvim' })
+	use({ 'rose-pine/neovim', as = 'rose-pine' })
+	-- use({ 'folke/tokyonight.nvim' })
 	-- More Colors!1!
 	use( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 

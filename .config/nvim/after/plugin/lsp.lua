@@ -12,7 +12,11 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = { "clangd", "lua_ls" },
+  ensure_installed = {
+      "clangd",
+      "lua_ls",
+      "neocmake"
+  },
   handlers = {
     lsp_zero.default_setup,
   },
@@ -24,7 +28,7 @@ local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
 	mapping = cmp.mapping.preset.insert({
-		['<CR>'] = cmp.mapping.confirm({select = true}),
+		['<CR>'] = cmp.mapping.confirm({select = false}),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<Tab>'] = cmp_action.luasnip_supertab(),
 		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
