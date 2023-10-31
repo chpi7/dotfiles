@@ -15,8 +15,8 @@ return require('packer').startup(function(use)
 	}
 
 	-- Colors
-	use({ 'rose-pine/neovim', as = 'rose-pine' })
-	-- use({ 'folke/tokyonight.nvim' })
+	-- use({ 'rose-pine/neovim', as = 'rose-pine' })
+	use({ 'folke/tokyonight.nvim' })
 	-- More Colors!1!
 	use( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
@@ -37,6 +37,9 @@ return require('packer').startup(function(use)
 			{'hrsh7th/cmp-nvim-lsp'},
 			{'L3MON4D3/LuaSnip'},
 		}
-}
+    }
+
+    -- git integration
+	use({ 'lewis6991/gitsigns.nvim' })
 
 end)
