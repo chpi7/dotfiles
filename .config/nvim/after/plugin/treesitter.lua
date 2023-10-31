@@ -21,3 +21,4 @@ require'nvim-treesitter.configs'.setup {
 }
 
 vim.treesitter.language.register('json', 'json.tmpl')
+vim.treesitter.language.register('json', 'sh.tmpl')
