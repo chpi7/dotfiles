@@ -7,6 +7,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
       "lua_ls",
       "neocmake",
+	  "pyright",
   },
   handlers = {
     lsp_zero.default_setup,
