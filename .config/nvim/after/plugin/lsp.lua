@@ -30,6 +30,11 @@ lsp_zero.on_attach(function(client, bufnum)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   -- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+  vim.keymap.set("n", "=", function() vim.lsp.buf.format() end, opts)
+
+  -- this doesnt work atm fix in the future
+  -- vim.keymap.set("v", "=", function() vim.lsp.formatexpr({}) end, opts)
 end)
 
 -- remove the errors related to the vim global not being defined
