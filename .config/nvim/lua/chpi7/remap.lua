@@ -7,6 +7,11 @@ vim.keymap.set("n", "<C-w>", ":tabclose<cr>")
 vim.keymap.set("n", "<C-k>", ":tabnext<cr>")
 vim.keymap.set("n", "<C-j>", ":tabNext<cr>")
 
+vim.keymap.set("n", "<leader>h", ":wincmd h<cr>")
+vim.keymap.set("n", "<leader>j", ":wincmd j<cr>")
+vim.keymap.set("n", "<leader>k", ":wincmd k<cr>")
+vim.keymap.set("n", "<leader>l", ":wincmd l<cr>")
+
 -- non disorienting jumping
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

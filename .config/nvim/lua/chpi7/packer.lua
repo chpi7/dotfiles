@@ -42,4 +42,9 @@ return require('packer').startup(function(use)
     -- git integration
 	use({ 'lewis6991/gitsigns.nvim' })
 
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+
 end)

@@ -13,6 +13,8 @@ require('gitsigns').setup({
 		  vim.keymap.set(mode, l, r, opts)
 		end
 
-		map('n', '<leader>hr', gs.reset_hunk)
+		map('n', '<leader>gr', gs.reset_hunk)
+        map('n', '<leader>gl', gs.blame_line)
+        map('n', '<leader>gbb', gs.blame)
 	end
 })
