@@ -21,7 +21,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-
 vim.opt.guicursor = ""
 
 vim.opt.nu = true

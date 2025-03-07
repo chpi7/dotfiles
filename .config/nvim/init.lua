@@ -1,19 +1,9 @@
 -- WE WANT THIS LSP CONFIG TO RUN BEFORE ANY LSPS ARE SETUP ---
 -- (which happens once we load plugins) ---
---
+-- (this could be in lspconfig config function though) ---
 --
 -- Reserve a space in the gutter
 vim.opt.signcolumn = 'yes'
-
---[[
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-'force',
-lspconfig_defaults.capabilities,
-require('cmp_nvim_lsp').default_capabilities()
-)]]
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -32,23 +22,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 		vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
 		vim.keymap.set("n", "=", function() vim.lsp.buf.format() end, opts)
+
+		vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
+		vim.keymap.set("n", "gI", function() vim.lsp.buf.implementation() end, opts)
+		-- vim.keymap.set("n", "gy", function() vim.lsp.buf.type_definition() end, opts)
+		vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+		--[[
+		{ "gr", vim.lsp.buf.references, desc = "References", nowait = true },
+		{ "gI", vim.lsp.buf.implementation, desc = "Goto Implementation" },
+		{ "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+		{ "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+		]]
 	end,
 })
 
 
 require("config.lazy")
 
-
-
--- ------------- KEYMAP ALL -----------------
+---------------- KEYMAP ALL ----------------
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>q", vim.cmd.Ex)
 
--- vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
+--[[
 vim.keymap.set("n", "<C-t>", ":tabnew<cr>")
 vim.keymap.set("n", "<C-w>", ":tabclose<cr>")
 vim.keymap.set("n", "<C-k>", ":tabnext<cr>")
 vim.keymap.set("n", "<C-j>", ":tabNext<cr>")
+]]
 
 vim.keymap.set("n", "<leader>h", ":wincmd h<cr>")
 vim.keymap.set("n", "<leader>j", ":wincmd j<cr>")
@@ -63,18 +63,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
-vim.keymap.set("n", "<S-h>", ":nohl<cr>");
+vim.keymap.set("n", "<S-h>", "<cmd>nohl<cr>");
 --------------------------------------------
-
-
-
-
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
--- this only works inside a git repo:
-vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
--- this requires ripgrep to be installed:
-vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>ph', builtin.grep_string, {})
 
