@@ -264,6 +264,7 @@ return {
 				servers = {
 					clangd = {},
 					zls = {},
+					pyright = {},
 				},
 				setup = { },
 			}
@@ -341,7 +342,15 @@ return {
 			require("nvim-treesitter.configs").setup(opts)
 		end
   	},
-
+	{
+		'lewis6991/gitsigns.nvim',
+		lazy = false,
+		keys = {
+			{"<leader>ghs", "<cmd>Gitsigns stage_hunk<CR>", desc=""},
+			{"<leader>ghr", "<cmd>Gitsigns reset_hunk<CR>", desc=""},
+		}
+	},
+	--[[
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -398,5 +407,5 @@ return {
 			})
 			-- vim.keymap.set("n", "<leader>e", "<Cmd>Neotree reveal<CR>")
 		end,
-	},
+	}, ]]--
 }
