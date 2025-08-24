@@ -17,6 +17,30 @@ return {
 		end,
 	},
 	{
+		-- Save sessions to ~/.local/state/nvim/sessions
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {
+			options = { "buffers", "curdir", "winsize" },
+		},
+		-- stylua: ignore
+		keys = {
+			{ "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+			{ "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+		},
+		--[[ config = function(_, opts)
+			require("persistence").setup(opts)
+
+			-- Close Neo-tree before session is saved
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "PersistenceSavePre",
+				callback = function()
+					vim.cmd("Neotree close")
+				end,
+			})
+		end ]]
+	},
+	{
 		'akinsho/bufferline.nvim', 
 		version = "v4", 
 		dependencies = 'nvim-tree/nvim-web-devicons',
@@ -34,6 +58,23 @@ return {
 						filetype = "snacks_layout_box",
 					},
 				},
+				custom_filter = function(buf, _)
+					-- Get the name of the buffer
+					local buf_name = vim.api.nvim_buf_get_name(buf)
+
+					-- Exclude empty buffers or special buffers
+					if buf_name == "" or vim.bo[buf].buftype ~= "" then
+						return false
+					end
+
+					-- Check if the buffer points to a real file on disk
+					local stat = vim.loop.fs_stat(buf_name)
+					if not stat or stat.type ~= "file" then
+						return false
+					end
+
+					return true
+				end,
 			},
 		},
 		config = function(_, opts)
@@ -59,6 +100,13 @@ return {
 			-- this requires ripgrep to be installed:
 			{'<leader>ps', "<cmd>Telescope live_grep<cr>", desc=""},
 			{'<leader>ph', "<cmd>Telescope grep_string<cr>", desc=""},
+			{'<leader>pr', "<cmd>Telescope lsp_references<cr>", desc=""},
+		},
+		opts = {
+			defaults = {
+				layout_strategy = 'vertical',
+				layout_config = { height = 0.95, preview_height = 0.5 },
+			},
 		},
 	},
 
@@ -128,9 +176,6 @@ return {
 					-- ["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-					-- ["<CR>"] = LazyVim.cmp.confirm({ select = auto_select }),
-					-- ["<C-y>"] = LazyVim.cmp.confirm({ select = true }),
-					-- ["<S-CR>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 					["<C-CR>"] = function(fallback)
 						cmp.abort()
@@ -344,68 +389,45 @@ return {
   	},
 	{
 		'lewis6991/gitsigns.nvim',
+		-- events = 'LazyFile',
 		lazy = false,
+		opts = {
+			current_line_blame = true,
+		},
 		keys = {
-			{"<leader>ghs", "<cmd>Gitsigns stage_hunk<CR>", desc=""},
-			{"<leader>ghr", "<cmd>Gitsigns reset_hunk<CR>", desc=""},
+			{"<leader>ggs", "<cmd>Gitsigns stage_hunk<CR>", desc=""},
+			{"<leader>ggr", "<cmd>Gitsigns reset_hunk<CR>", desc=""},
+			{"<leader>ggl", "<cmd>Gitsigns blame_line<CR>", desc=""},
 		}
 	},
-	--[[
-	{
+	--[[{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
-			-- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+			"nvim-tree/nvim-web-devicons", -- optional, but recommended
 		},
-		cmd = "Neotree",
+		lazy = false, -- neo-tree will lazily load itself
+		---@module 'neo-tree'
+		---@type neotree.Config
+		opts = {
+			close_if_last_window = true,
+			-- auto_clean_after_session_restore = true,
+			hide_root_node = true,
+			filesystem = {
+				follow_current_file = {
+					enabled = true,
+				},
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = true,
+				},
+			},
+		},
 		keys = {
 			{"<leader>e", "<Cmd>Neotree toggle<CR>"}
 		},
-		config = function()
-			vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-			vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-			vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-			vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
-			require("neo-tree").setup({
-				close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-				-- popup_border_style = "rounded",
-				-- enable_git_status = true,
-				-- enable_diagnostics = true,
-				open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-				open_files_using_relative_paths = false,
-
-				window = {
-					position = "right",
-					mapping_options = {
-						noremap = true,
-						nowait = true,
-					},
-
-					mappings = {
-						["<space>"] = {
-							"toggle_node",
-							nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-						},
-						["t"] = "open_tabnew",
-						["C"] = "close_all_nodes",
-					},
-
-				},
-				buffers = {
-					follow_current_file = {
-						enabled = true, -- This will find and focus the file in the active buffer every time
-						--              -- the current file is changed while the tree is open.
-						leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
-					},
-					group_empty_dirs = true, -- when true, empty folders will be grouped together
-					show_unloaded = true,
-				},
-			})
-			-- vim.keymap.set("n", "<leader>e", "<Cmd>Neotree reveal<CR>")
-		end,
-	}, ]]--
+	},]]
 }
