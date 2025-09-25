@@ -56,6 +56,8 @@ vim.keymap.set("n", "<leader>k", ":wincmd k<cr>")
 vim.keymap.set("n", "<leader>l", ":wincmd l<cr>")
 
 -- non disorienting jumping
+vim.keymap.set("n", "<PageUp>", "<C-u>zz")
+vim.keymap.set("n", "<PageDown>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "n", "nzzzv")

@@ -1,0 +1,3 @@
+# exec discord
+
+assign [app_id="discord"] workspace 3

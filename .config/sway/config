@@ -1,0 +1,51 @@
+# Mod keys
+set $mod Mod4
+
+# Vim keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+include ~/.config/sway/themes/tokyonight
+include ~/.config/sway/keymap
+include ~/.config/sway/app_settings
+
+# Fonts
+font pango:Hack Nerd Font 10
+
+# Cursor
+set $cursor_theme Bibata-Modern-Ice
+seat * xcursor_theme $cursor_theme 24
+
+# Applications
+set $term kitty
+set $files dolphin
+set $menu --no-startup-id rofi -show drun
+
+bar {
+    swaybar_command waybar
+}
+
+# Locale
+input * {
+    xkb_layout "de"
+}
+
+input type:pointer {
+    accel_profile "flat"
+}
+
+# Styling
+
+exec_always swaybg -i ~/Downloads/background.jpg -m fill
+
+default_border pixel 1
+default_floating_border pixel 3
+
+for_window [app_id=".*"] opacity 1
+for_window [app_id="kitty"] opacity 0.9
+
+# Include other stuff
+include /etc/sway/config.d/*
+include ~/.config/sway/autostart
