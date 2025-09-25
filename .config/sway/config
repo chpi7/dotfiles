@@ -39,6 +39,7 @@ input type:pointer {
 # Styling
 
 exec_always swaybg -i ~/Downloads/background.jpg -m fill
+# exec_always swaybg -i ~/Downloads/bg-aot-ma.png -m fill
 
 default_border pixel 1
 default_floating_border pixel 3
