@@ -7,6 +7,11 @@ set $down j
 set $up k
 set $right l
 
+# Applications
+set $term kitty
+set $files dolphin
+set $menu --no-startup-id rofi -show drun
+
 include ~/.config/sway/themes/tokyonight
 include ~/.config/sway/keymap
 include ~/.config/sway/app_settings
@@ -17,11 +22,6 @@ font pango:Hack Nerd Font 10
 # Cursor
 set $cursor_theme Bibata-Modern-Ice
 seat * xcursor_theme $cursor_theme 24
-
-# Applications
-set $term kitty
-set $files dolphin
-set $menu --no-startup-id rofi -show drun
 
 bar {
     swaybar_command waybar
