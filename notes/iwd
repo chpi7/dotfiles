@@ -1,0 +1,13 @@
+/etc/iwd/main.conf:
+```
+[General]
+EnableNetworkConfiguration=true
+
+[Network]
+NameResolvingService=systemd
+```
+then
+```sh
+systemctl enable --now systemd-resolved
+systemctl enable --now iwd
+```
