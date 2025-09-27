@@ -17,6 +17,7 @@
     "clock"
   ],
   "modules-right": [
+	"custom/nightmode",
     "pulseaudio",
     "temperature",
     "network",
@@ -46,8 +47,14 @@
       "1": [],
       "2": [],
       "3": [],
-      "4": [],
+      "4": []
     }
+  },
+  "custom/nightmode": {
+	  "exec": "~/.config/waybar/scripts/gammastep-status.sh",
+	  "interval": 10,
+	  "on-click": "~/.config/waybar/scripts/gammastep-toggle.sh",
+	  "return-type": "json"
   },
   "sway/scratchpad": {
     "format": " {count}",
