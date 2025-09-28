@@ -13,6 +13,8 @@
   background-color: @background;
   /* background-color: @background; */
   color: @foreground;
+
+  opacity: 0.9;
 }
 
 /* === Shared module styles === */
@@ -38,8 +40,6 @@
   opacity: 0.9;
 
   color: @foreground;
-  /* border: 1px solid @foreground-alt; */
-  border-radius: 3px;
 }
 
 /* === Workspaces === */
@@ -56,6 +56,8 @@
 #workspaces button.visible {
   font-weight: 900; 
   color: @foreground-alt;
+  border-bottom: solid @foreground 1px;
+  border-radius: 0px;
 }
 
 #workspaces button:hover,
