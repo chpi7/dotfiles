@@ -1,4 +1,4 @@
-@import "themes/tokyonight.css";
+@import "themes/monochrome.css";
 /* Change this import to switch themes */
 
 * {
@@ -13,8 +13,6 @@
   background-color: @background;
   /* background-color: @background; */
   color: @foreground;
-
-  opacity: 0.9;
 }
 
 /* === Shared module styles === */

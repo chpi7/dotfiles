@@ -45,7 +45,6 @@ default_border pixel 1
 default_floating_border pixel 3
 
 for_window [app_id=".*"] opacity 1
-for_window [app_id="kitty"] opacity 0.95
 
 # Include other stuff
 include /etc/sway/config.d/*
