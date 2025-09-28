@@ -4,10 +4,13 @@
 * {
   font-family: "Hack Nerd Font";
   font-size: 12px;
+
+  padding: 0px;
+  margin: 0px;
 }
 
-window#waybar {
-  background-color: transparent;
+#waybar {
+  background-color: @background;
   /* background-color: @background; */
   color: @foreground;
 }
@@ -31,7 +34,6 @@ window#waybar {
   margin: 3px;
   margin-top: 2;
   margin-bottom: 2;
-  background: @background-alt;
 
   opacity: 0.9;
 
@@ -41,11 +43,6 @@ window#waybar {
 }
 
 /* === Workspaces === */
-#workspaces {
-  padding: 2;
-  margin-right: 5px;
-}
-
 #workspaces button,
 #workspaces button:hover,
 #workspaces button.visible,
