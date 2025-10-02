@@ -1,21 +1,21 @@
 return {
 	-- the colorscheme should be available when starting Neovim
-	--[[{
+	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd("colorscheme tokyonight")
 		end,
-	},]]
-	{
+	},
+	--[[{
 		"EdenEast/nightfox.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd("colorscheme nightfox")
 		end,
-	},
+	},]]
 	{
 		-- Save sessions to ~/.local/state/nvim/sessions
 		"folke/persistence.nvim",
