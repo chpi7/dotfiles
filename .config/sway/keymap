@@ -1,9 +1,9 @@
 bindsym $mod+i workspace next
 bindsym $mod+u workspace prev
-bindsym $mod+l focus left
+bindsym $mod+l focus right
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+h focus right
+bindsym $mod+h focus left
 
 bindsym $mod+Shift+l exec ~/.config/hypr/scripts/lock
 bindsym $mod+Return exec $term
