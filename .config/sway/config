@@ -8,7 +8,7 @@ set $up k
 set $right l
 
 # Applications
-set $term kitty
+set $term alacritty
 set $files dolphin
 set $menu --no-startup-id rofi -show drun
 
@@ -38,8 +38,7 @@ input type:pointer {
 
 # Styling
 
-exec_always swaybg -i ~/Downloads/background.jpg -m fill
-# exec_always swaybg -i ~/Downloads/bg-aot-ma.png -m fill
+exec_always swaybg -i ~/background.jpg -m fill
 
 default_border pixel 1
 default_floating_border pixel 3
