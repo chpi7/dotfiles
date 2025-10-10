@@ -1,10 +1,10 @@
-# fzf (https://github.com/scop/bash-completion.git)
+# fzf (https://github.com/junegunn/fzf.git)
 eval "$(fzf --bash)"
 
 HISTSIZE=-1
 HISTFILESIZE=-1
 
-# bash-completion (https://github.com/junegunn/fzf.git)
+# bash-completion (https://github.com/scop/bash-completion.git)
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
 
