@@ -32,6 +32,17 @@
       "4": []
     }
   },
+  "niri/workspaces": {
+    "all-outputs": true,
+    "warp-on-scroll": true,
+    "enable-bar-scroll": false,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": []
+    }
+  },
   "custom/nightmode": {
 	  "exec": "~/.config/waybar/scripts/gammastep-status.sh",
 	  "interval": 10,
