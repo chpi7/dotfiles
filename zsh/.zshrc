@@ -3,12 +3,16 @@ unsetopt inc_append_history_time
 unsetopt inc_append_history
 setopt hist_expire_dups_first
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey '^H' backward-kill-word
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
 # Prompt
-PROMPT='%(?.%F{blue}o.%F{red}o)%f %2~ > '
+PROMPT='%(?.%F{blue}.%F{red})%f %2~ > '
 
 alias gd='git diff'
 alias gds='git diff --staged'
