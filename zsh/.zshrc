@@ -4,11 +4,26 @@ unsetopt inc_append_history
 setopt hist_expire_dups_first
 
 HISTFILE=~/.zsh_history
-HISTIZE=1000000
+HISTSIZE=1000000
 SAVEHIST=1000000
 
 # Prompt
-PROMPT='%(?.%F{blue}⏺.%F{red}⏺)%f %2~ > '
+PROMPT='%(?.%F{blue}o.%F{red}o)%f %2~ > '
+
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gc='git commit'
+alias gc='git commit'
+alias gst='git status'
+alias gco='git checkout'
+
+
+export PATH=/home/user/.local/bin:$PATH
+
+if [ -d /home/user/repos/neovim/build_install/bin ]; then
+    export PATH=/home/user/repos/neovim/build_install/bin:$PATH
+fi
+
 
 # fzf (https://github.com/junegunn/fzf.git)
-eval "$(fzf --zsh)"
+source <(fzf --zsh)
