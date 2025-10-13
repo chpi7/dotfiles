@@ -21,11 +21,14 @@ alias gc='git commit'
 alias gst='git status'
 alias gco='git checkout'
 
+function add_to_path {
+	export PATH=$1:$PATH
+}
 
-export PATH=/home/user/.local/bin:$PATH
+add_to_path /home/user/.local/bin
 
 if [ -d /home/user/repos/neovim/build_install/bin ]; then
-    export PATH=/home/user/repos/neovim/build_install/bin:$PATH
+    add_to_path /home/user/repos/neovim/build_install/bin
 fi
 
 
