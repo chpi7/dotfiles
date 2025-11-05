@@ -310,6 +310,7 @@ return {
 					clangd = {},
 					zls = {},
 					pyright = {},
+					ocamllsp = {},
 				},
 				setup = { },
 			}
