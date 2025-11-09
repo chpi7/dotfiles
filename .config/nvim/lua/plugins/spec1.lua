@@ -260,7 +260,7 @@ return {
 	},
 	{ 
 		"neovim/nvim-lspconfig", 
-		tag = "v1.7.0",
+		tag = "v2.5.0",
 		dependencies = { "hrsh7th/cmp-nvim-lsp" },
 
 		opts = function ()
@@ -307,7 +307,23 @@ return {
 					timeout_ms = nil,
 				},
 				servers = {
-					clangd = {},
+					clangd = {
+						settings = {
+							clangd = {
+								InlayHints = {
+									Enabled = true,
+									Designators = true,
+									ParameterNames = true,
+									DeducedTypes = true,
+								},
+							},
+						},
+						on_attach = function(client, bufnr)
+							if client.server_capabilities.inlayHintProvider then
+								vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+							end
+						end,
+					},
 					zls = {},
 					pyright = {},
 					ocamllsp = {},
