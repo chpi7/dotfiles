@@ -41,7 +41,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.updatetime = 50
 
 -- Config global diagnostic options
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = true })
 
 -- Setup lazy.nvim
 require("lazy").setup({
