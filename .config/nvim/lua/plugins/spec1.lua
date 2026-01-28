@@ -327,6 +327,7 @@ return {
 					zls = {},
 					pyright = {},
 					ocamllsp = {},
+					rust_analyzer = {},
 				},
 				setup = { },
 			}

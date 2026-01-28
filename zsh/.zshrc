@@ -25,10 +25,11 @@ function add_to_path {
 	export PATH=$1:$PATH
 }
 
-add_to_path /home/user/.local/bin
+add_to_path $HOME/.local/bin
+add_to_path $HOME/.cargo/bin
 
-if [ -d /home/user/repos/neovim/build_install/bin ]; then
-    add_to_path /home/user/repos/neovim/build_install/bin
+if [ -d $HOME/repos/neovim/build_install/bin ]; then
+    add_to_path $HOME/repos/neovim/build_install/bin
 fi
 
 
