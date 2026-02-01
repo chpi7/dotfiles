@@ -91,7 +91,7 @@ return {
 		end,
 	},
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.8',
+		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
 			{"<leader>pf", "<cmd>Telescope find_files<cr>", desc=""},
@@ -397,12 +397,12 @@ return {
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-			-- auto_install = true,
+			auto_install = true,
 			sync_install = true,
 			ensure_installed = { "c", "cpp", "lua" },
 		},
 		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+			require("nvim-treesitter").setup(opts)
 		end
   	},
 	{
