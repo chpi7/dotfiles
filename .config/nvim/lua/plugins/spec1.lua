@@ -399,7 +399,7 @@ return {
 			indent = { enable = true },
 			auto_install = true,
 			sync_install = true,
-			ensure_installed = { "c", "cpp", "lua" },
+			ensure_installed = { "c", "cpp", "lua", "markdown" },
 		},
 		config = function(_, opts)
 			require("nvim-treesitter").setup(opts)
