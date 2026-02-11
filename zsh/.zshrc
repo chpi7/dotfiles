@@ -25,13 +25,20 @@ function add_to_path {
 	export PATH=$1:$PATH
 }
 
+function setup_fzf {
+	# fzf (https://github.com/junegunn/fzf.git)
+	if fzf --zsh &>/dev/null; then
+		source <(fzf --zsh)
+	else
+		source /usr/share/doc/fzf/examples/key-bindings.zsh
+	fi
+}
+
 add_to_path $HOME/.local/bin
 add_to_path $HOME/.cargo/bin
+
+setup_fzf
 
 if [ -d $HOME/repos/neovim/build_install/bin ]; then
     add_to_path $HOME/repos/neovim/build_install/bin
 fi
-
-
-# fzf (https://github.com/junegunn/fzf.git)
-source <(fzf --zsh)
