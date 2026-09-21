@@ -264,6 +264,14 @@ return {
 		dependencies = { "hrsh7th/cmp-nvim-lsp" },
 
 		opts = function ()
+			-- Use root to configure rust-analyzer's check command
+			-- local root = vim.fn.getcwd()
+			local meson_root = vim.fs.root(0, { "rust-project.json" })
+			local rust_check_settings = {}
+			if meson_root then
+				rust_check_settings["overrideCommand"] = {"ninja", "clippy-json", "-C", "build"}
+			end
+
 			local ret = {
 				diagnostics = {
 					underline = true,
@@ -327,7 +335,16 @@ return {
 					zls = {},
 					pyright = {},
 					ocamllsp = {},
-					rust_analyzer = {},
+					rust_analyzer = {
+						settings = {
+							['rust-analyzer'] = {
+								diagnostics = {
+									enable = true,
+								},
+								check = rust_check_settings,
+							},
+						},
+					},
 				},
 				setup = { },
 			}
